@@ -7,6 +7,7 @@ import com.galaxy.noteapp.notes.data.repository.NoteRepositoryImpl
 import com.galaxy.noteapp.notes.domain.repository.NoteRepository
 import com.galaxy.noteapp.notes.domain.use_case.AddNoteUseCase
 import com.galaxy.noteapp.notes.domain.use_case.DeleteNoteUseCase
+import com.galaxy.noteapp.notes.domain.use_case.GetNoteUseCase
 import com.galaxy.noteapp.notes.domain.use_case.GetNotesUseCase
 import com.galaxy.noteapp.notes.domain.use_case.NoteUseCases
 import dagger.Module
@@ -42,7 +43,8 @@ object AppModule {
         return NoteUseCases(
             getNotesUseCase = GetNotesUseCase(repository),
             deleteNoteUseCase = DeleteNoteUseCase(repository),
-            addNoteUseCase = AddNoteUseCase(repository)
+            addNoteUseCase = AddNoteUseCase(repository),
+            getNoteUseCase = GetNoteUseCase(repository)
         )
     }
 }

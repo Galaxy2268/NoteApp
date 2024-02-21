@@ -1,13 +1,11 @@
 package com.galaxy.noteapp.notes.presentation.notes.components
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -38,7 +36,7 @@ fun NoteItem(
     ){
         Card(
             modifier = Modifier
-                .matchParentSize(),
+                .fillMaxSize(),
             colors = CardDefaults.cardColors(
                 containerColor = NoteColor
             ),
@@ -52,23 +50,23 @@ fun NoteItem(
             ) {
                 Text(
                     text = note.title,
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.titleLarge,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
                 Spacer(Modifier.height(8.dp))
                 Text(
                     text = note.content,
-                    style = MaterialTheme.typography.labelSmall,
+                    style = MaterialTheme.typography.labelMedium,
                     maxLines = 4,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
 
                 )
             }
 
         }
         IconButton(
-            onClick = {onDeleteClick},
+            onClick = onDeleteClick,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
             Icon(

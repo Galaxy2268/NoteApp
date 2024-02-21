@@ -15,17 +15,31 @@ val Typography = Typography(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
-        color = Color.White
 
     ),
-    labelSmall = TextStyle(
+    labelMedium = TextStyle(
+        color = NoteContent
+    ),
+    headlineLarge = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp,
-        color = NoteColor
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        color = Color.White
+    ),
+    titleLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        color = Color.White
+    ),
+    bodyMedium = TextStyle(
+        color = Color.White
     )
+
 
     /* Other default text styles to override
     titleLarge = TextStyle(
@@ -45,8 +59,3 @@ val Typography = Typography(
     */
 )
 
-val MyTypography = Typography(
-    bodyMedium = TextStyle(
-        color = Color.White
-    )
-)

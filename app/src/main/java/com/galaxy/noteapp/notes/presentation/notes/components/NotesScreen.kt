@@ -1,6 +1,5 @@
 package com.galaxy.noteapp.notes.presentation.notes.components
 
-import android.graphics.drawable.Icon
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -21,13 +20,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -37,11 +35,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.galaxy.noteapp.notes.presentation.notes.NotesEvent
 import com.galaxy.noteapp.notes.presentation.notes.NotesViewModel
+import com.galaxy.noteapp.notes.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -56,8 +56,10 @@ fun NotesScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primary)
+                onClick = {
+                          navController.navigate(Screen.AddEditNoteScreen.route)
+                },
+                modifier = Modifier.background(color = Color.Transparent)
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -72,7 +74,7 @@ fun NotesScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
+                .padding(16.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -118,13 +120,16 @@ fun NotesScreen(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { },
+                            .clickable {
+                                navController.navigate(Screen.AddEditNoteScreen.route + "?noteId=${note.id}")
+                            },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
                                 val result = snackBarHostState.showSnackbar(
                                     message = "Note deleted",
-                                    actionLabel = "Undo"
+                                    actionLabel = "Undo",
+                                    duration = SnackbarDuration.Short
                                 )
                                 if (result == SnackbarResult.ActionPerformed){
                                     viewModel.onEvent(NotesEvent.RestoreNote)
